@@ -1,0 +1,19 @@
+{
+  "format": "sse-fault-lab/v1",
+  "name": "Cursor reset after a split UTF-8 event",
+  "connections": [
+    {
+      "expectedLastEventId": null,
+      "status": 200,
+      "chunks": [
+        {"text": "retry: 100\r\n: synthetic heartbeat\r\nid: checkpoint-1\r\ndata: ready ", "delayMs": 0},
+        {"base64": "8J8=", "delayMs": 5},
+        {"base64": "jI0=", "delayMs": 5},
+        {"text": "\r", "delayMs": 0},
+        {"text": "\n\r\nid:\r\n\r\ndata: reset accepted\r\n\r\n", "delayMs": 5}
+      ],
+      "end": "eof"
+    },
+    {"expectedLastEventId": null, "status": 204, "chunks": [], "end": "eof"}
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "format": "sse-fault-lab/report/v1",
+  "mode": "inspect",
+  "scenario": {
+    "name": "Cursor reset after a split UTF-8 event",
+    "connectionCount": 2,
+    "totalBytes": 104,
+    "totalChunks": 5,
+    "scheduledDelayMs": 15
+  },
+  "summary": {
+    "events": 2,
+    "cursorChanges": 2,
+    "retryObservations": 1,
+    "incompleteResponses": 0,
+    "requests": 0,
+    "assertionsPassed": 0,
+    "assertionsFailed": 0
+  },
+  "outcome": "inspected",
+  "connections": [
+    {
+      "index": 0,
+      "status": 200,
+      "end": "eof",
+      "expectedLastEventId": null,
+      "initialCursor": "",
+      "chunks": [
+        {
+          "index": 0,
+          "startByte": 0,
+          "endByte": 65,
+          "byteLength": 65,
+          "delayMs": 0,
+          "hex": "72 65 74 72 79 3a 20 31 30 30 0d 0a 3a 20 73 79 6e 74 68 65 74 69 63 20 68 65 61 72 74 62 65 61 74 0d 0a 69 64 3a 20 63 68 65 63 6b 70 6f 69 6e 74 2d 31 0d 0a 64 61 74 61 3a 20 72 65 61 64 79 20",
+          "escaped": "retry: 100\\r\\n: synthetic heartbeat\\r\\nid: checkpoint-1\\r\\ndata: ready ",
+          "previewTruncated": false
+        },
+        {
+          "index": 1,
+          "startByte": 65,
+          "endByte": 67,
+          "byteLength": 2,
+          "delayMs": 5,
+          "hex": "f0 9f",
+          "escaped": "\\xf0\\x9f",
+          "previewTruncated": false
+        },
+        {
+          "index": 2,
+          "startByte": 67,
+          "endByte": 69,
+          "byteLength": 2,
+          "delayMs": 5,
+          "hex": "8c 8d",
+          "escaped": "\\x8c\\x8d",
+          "previewTruncated": false
+        },
+        {
+          "index": 3,
+          "startByte": 69,
+          "endByte": 70,
+          "byteLength": 1,
+          "delayMs": 0,
+          "hex": "0d",
+          "escaped": "\\r",
+          "previewTruncated": false
+        },
+        {
+          "index": 4,
+          "startByte": 70,
+          "endByte": 104,
+          "byteLength": 34,
+          "delayMs": 5,
+          "hex": "0a 0d 0a 69 64 3a 0d 0a 0d 0a 64 61 74 61 3a 20 72 65 73 65 74 20 61 63 63 65 70 74 65 64 0d 0a 0d 0a",
+          "escaped": "\\n\\r\\nid:\\r\\n\\r\\ndata: reset accepted\\r\\n\\r\\n",
+          "previewTruncated": false
+        }
+      ],
+      "events": [
+        {
+          "index": 0,
+          "type": "message",
+          "data": "ready 🌍",
+          "lastEventId": "checkpoint-1",
+          "line": 5,
+          "atByte": 72,
+          "chunkIndex": 4
+        },
+        {
+          "index": 1,
+          "type": "message",
+          "data": "reset accepted",
+          "lastEventId": "",
+          "line": 9,
+          "atByte": 103,
+          "chunkIndex": 4
+        }
+      ],
+      "fields": [
+        {
+          "line": 1,
+          "atByte": 11,
+          "chunkIndex": 0,
+          "name": "retry",
+          "value": "100",
+          "kind": "retry"
+        },
+        {
+          "line": 2,
+          "atByte": 34,
+          "chunkIndex": 0,
+          "name": ":",
+          "value": " synthetic heartbeat",
+          "kind": "comment"
+        },
+        {
+          "line": 3,
+          "atByte": 52,
+          "chunkIndex": 0,
+          "name": "id",
+          "value": "checkpoint-1",
+          "kind": "id"
+        },
+        {
+          "line": 4,
+          "atByte": 70,
+          "chunkIndex": 3,
+          "name": "data",
+          "value": "ready 🌍",
+          "kind": "data"
+        },
+        {
+          "line": 6,
+          "atByte": 77,
+          "chunkIndex": 4,
+          "name": "id",
+          "value": "",
+          "kind": "id"
+        },
+        {
+          "line": 8,
+          "atByte": 101,
+          "chunkIndex": 4,
+          "name": "data",
+          "value": "reset accepted",
+          "kind": "data"
+        }
+      ],
+      "cursorTransitions": [
+        {
+          "line": 5,
+          "atByte": 72,
+          "chunkIndex": 4,
+          "from": "",
+          "to": "checkpoint-1"
+        },
+        {
+          "line": 7,
+          "atByte": 79,
+          "chunkIndex": 4,
+          "from": "checkpoint-1",
+          "to": ""
+        }
+      ],
+      "retryObservations": [
+        {
+          "line": 1,
+          "atByte": 11,
+          "chunkIndex": 0,
+          "value": "100",
+          "accepted": true,
+          "milliseconds": "100"
+        }
+      ],
+      "notes": [],
+      "finalCursor": "",
+      "totalBytes": 104,
+      "request": null
+    },
+    {
+      "index": 1,
+      "status": 204,
+      "end": "eof",
+      "expectedLastEventId": null,
+      "initialCursor": "",
+      "chunks": [],
+      "events": [],
+      "fields": [],
+      "cursorTransitions": [],
+      "retryObservations": [],
+      "notes": [],
+      "finalCursor": "",
+      "totalBytes": 0,
+      "request": null
+    }
+  ],
+  "notes": [],
+  "scope": [
+    "Offline inspection feeds the exact fixture byte chunks. Socket writes do not guarantee client read or TCP packet boundaries.",
+    "Each response starts with its declared expected request cursor (null means empty); inspection does not observe or certify a real client.",
+    "SSE fields follow UTF-8 replacement decoding, CR/LF framing and blank-line dispatch. EOF never implies a provider completion sentinel.",
+    "Only explicit request-cursor assertions are checked during serving. Application completeness, duplicate IDs and provider protocols are not inferred.",
+    "Reports include fixture content and the Last-Event-ID request header. Do not put credentials or private content in shared fixtures."
+  ],
+  "demo": true
+}

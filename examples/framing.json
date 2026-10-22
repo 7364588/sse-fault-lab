@@ -1,0 +1,17 @@
+{
+  "format": "sse-fault-lab/v1",
+  "name": "Framing: empty data, ignored fields and incomplete EOF",
+  "connections": [
+    {
+      "expectedLastEventId": null,
+      "status": 200,
+      "chunks": [
+        {"text": "\ufeff: comment only\r\rretry: 25\rretry: +25\rid: a\r\rdata\r\r", "delayMs": 0},
+        {"text": "event: update\ndata: line one\ndata: line two\nid: ignored\u0000id\n\n", "delayMs": 0},
+        {"text": "data: discarded at EOF", "delayMs": 0}
+      ],
+      "end": "eof"
+    },
+    {"expectedLastEventId": "a", "status": 204, "chunks": [], "end": "eof"}
+  ]
+}

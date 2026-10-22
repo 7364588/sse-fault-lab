@@ -1,0 +1,20 @@
+{
+  "name": "sse-fault-lab",
+  "version": "0.1.0",
+  "description": "Reproducible SSE byte and reconnect fault scenarios for local development",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "sse-fault-lab": "dist/cli.js" },
+  "exports": { ".": "./dist/index.js" },
+  "files": ["dist", "examples", "README.md", "LICENSE", "CHANGELOG.md", "docs/preview.png"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "demo": "node scripts/demo.mjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/7364588/sse-fault-lab.git" },
+  "bugs": { "url": "https://github.com/7364588/sse-fault-lab/issues" },
+  "homepage": "https://7364588.github.io/sse-fault-lab/"
+}

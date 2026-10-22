@@ -1,0 +1,22 @@
+{
+  "format": "sse-fault-lab/v1",
+  "name": "Abrupt response close and explicit resume assertion",
+  "connections": [
+    {
+      "expectedLastEventId": null,
+      "status": 200,
+      "chunks": [
+        {"text": "retry: 100\nid: step-1\ndata: first\n\n", "delayMs": 0},
+        {"text": "data: incomplete", "delayMs": 15}
+      ],
+      "end": "disconnect"
+    },
+    {
+      "expectedLastEventId": "step-1",
+      "status": 200,
+      "chunks": [{"text": "id: step-2\ndata: second\ndata: continued\n\n", "delayMs": 10}],
+      "end": "eof"
+    },
+    {"expectedLastEventId": "step-2", "status": 204, "chunks": [], "end": "eof"}
+  ]
+}
